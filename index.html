@@ -462,6 +462,186 @@ p.body{font-size:.9rem;line-height:1.7;color:rgba(239,243,255,.85)}
   .act-layout{grid-template-columns:1fr}
   .cred-grid{grid-template-columns:1fr}
 }
+
+/* ════════════════════════════════════════════
+   MEJORAS VISUALES COMPLETAS
+   ════════════════════════════════════════════ */
+
+/* ── BOTÓN VIDEO EN FICHAS DE PLANETA ── */
+.video-btn {
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:12px;background:rgba(226,75,74,.12);
+  border:1px solid rgba(226,75,74,.45);color:#ff7070;
+  font-family:var(--fhead);font-size:.65rem;letter-spacing:1.5px;
+  padding:9px 18px;border-radius:var(--r2);cursor:pointer;
+  transition:all .2s;text-transform:uppercase;
+}
+.video-btn:hover{background:rgba(226,75,74,.25);color:#fff;border-color:#ff7070;transform:scale(1.02)}
+.video-btn::before{content:"▶";font-size:.8rem}
+
+/* ── MODAL VIDEO ── */
+#video-modal{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.92);z-index:9999;
+  align-items:center;justify-content:center;
+  flex-direction:column;gap:16px;
+}
+#video-modal.open{display:flex}
+.vm-inner{
+  position:relative;width:min(860px,94vw);
+  aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;
+  box-shadow:0 0 60px rgba(0,0,0,.8);
+}
+.vm-inner iframe{width:100%;height:100%;border:none}
+.vm-title{
+  font-family:var(--fhead);font-size:.72rem;letter-spacing:2px;
+  color:var(--gold);text-align:center;text-transform:uppercase;
+}
+.vm-close{
+  background:transparent;border:1px solid rgba(255,255,255,.25);
+  color:var(--white);font-family:var(--fhead);font-size:.65rem;
+  letter-spacing:1.5px;padding:8px 22px;border-radius:var(--r2);
+  cursor:pointer;transition:all .2s;
+}
+.vm-close:hover{background:rgba(255,255,255,.1)}
+
+/* ── ÓRBITAS DECORATIVAS ── */
+.orbit-deco{
+  position:absolute;inset:0;pointer-events:none;
+  overflow:hidden;z-index:0;opacity:.18;
+}
+.orbit-ring{
+  position:absolute;border-radius:50%;
+  border:1px solid rgba(77,166,255,.6);
+}
+.orbit-ring.or1{
+  width:500px;height:500px;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%) rotateX(72deg);
+  animation:orbit-spin 18s linear infinite;
+}
+.orbit-ring.or2{
+  width:700px;height:700px;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%) rotateX(72deg) rotate(45deg);
+  animation:orbit-spin 28s linear infinite reverse;
+  border-color:rgba(245,200,66,.5);
+}
+.orbit-ring.or3{
+  width:350px;height:350px;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%) rotateX(72deg) rotate(-20deg);
+  animation:orbit-spin 12s linear infinite;
+  border-color:rgba(29,184,122,.5);
+}
+@keyframes orbit-spin{from{transform:translate(-50%,-50%) rotateX(72deg) rotate(0deg)}to{transform:translate(-50%,-50%) rotateX(72deg) rotate(360deg)}}
+
+/* ── SÍNTESIS: MINI PLANETAS EN CABECERA ── */
+.synth-planet-icon{
+  display:block;font-size:1.4rem;margin-bottom:4px;
+  filter:drop-shadow(0 0 6px currentColor);
+}
+.synth-table th{padding:10px 12px 8px}
+
+/* ── SÍNTESIS: fondo con imagen ── */
+#s9c{overflow:hidden}
+.synth-bg{
+  position:absolute;inset:0;
+  background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Solar_sys8.jpg/1280px-Solar_sys8.jpg') center/cover no-repeat;
+  filter:brightness(.06) saturate(.5);
+  pointer-events:none;z-index:0;
+}
+#s9c .slide-strip,#s9c .slide-body{position:relative;z-index:1}
+
+/* ── REFLEXIÓN: layout split con imagen NASA ── */
+.reflex-layout{
+  display:flex;height:100%;
+}
+.reflex-img{
+  width:38%;flex-shrink:0;position:relative;overflow:hidden;
+}
+.reflex-img img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  filter:brightness(.65) saturate(1.2);
+}
+.reflex-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,transparent 55%,var(--bg) 100%);
+}
+.reflex-img .reflex-caption{
+  position:absolute;bottom:8px;left:10px;right:10px;
+  font-size:.63rem;color:rgba(255,255,255,.35);z-index:2;
+}
+.reflex-content{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:28px 32px;text-align:center;
+}
+
+/* ── DEBATE: mejoras visuales ── */
+.debate-bg{
+  position:absolute;inset:0;
+  background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Europa_moon_crescent.jpg/800px-Europa_moon_crescent.jpg') right center/45% no-repeat;
+  filter:brightness(.08) saturate(.8);
+  pointer-events:none;z-index:0;
+}
+#s10bc .slide-strip,#s10bc .slide-body{position:relative;z-index:1}
+.debate-card{
+  background:rgba(8,14,30,.9);
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:16px 18px;font-size:.86rem;line-height:1.6;
+  transition:transform .25s,box-shadow .25s;
+}
+.debate-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.debate-card h4{
+  font-family:var(--fhead);font-size:.68rem;letter-spacing:1.5px;
+  color:var(--blue);text-transform:uppercase;margin-bottom:10px;
+}
+
+/* ── CLASIFICACIÓN: mejoras decorativas ── */
+.cmp-head{padding:18px 20px;text-align:center;position:relative}
+.cmp-planet-mini{
+  font-size:2rem;display:block;margin-bottom:8px;
+  filter:drop-shadow(0 0 8px currentColor);
+}
+.cmp-gas .cmp-head{background:rgba(77,166,255,.1);border:1px solid rgba(77,166,255,.3)}
+.cmp-ice .cmp-head{background:rgba(29,184,122,.08);border:1px solid rgba(29,184,122,.25)}
+
+/* ── 3D HOVER en fichas de planeta ── */
+.planet-slide{perspective:1200px}
+.planet-data-panel{
+  transform-style:preserve-3d;
+  transition:transform .12s ease-out;
+}
+
+/* ── ACTIVIDAD instrucciones: mejora visual ── */
+#s10c .slide-body{position:relative}
+.act-orbit-deco{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;opacity:.12;
+}
+.act-ring{
+  position:absolute;border-radius:50%;
+  border:1px solid var(--gold);
+}
+.act-ring.ar1{width:400px;height:400px;top:-80px;right:-80px;animation:orbit-spin 20s linear infinite}
+.act-ring.ar2{width:260px;height:260px;bottom:-40px;left:-40px;border-color:var(--blue);animation:orbit-spin 14s linear infinite reverse}
+#s10c .slide-body>*:not(.act-orbit-deco){position:relative;z-index:1}
+
+/* ── PORTADA: mejora visual con nebulosa ── */
+.premium-nebula{
+  position:absolute;top:-30%;right:-10%;
+  width:60%;height:130%;
+  background:radial-gradient(ellipse at 60% 50%,rgba(77,166,255,.12) 0%,rgba(245,200,66,.06) 40%,transparent 70%);
+  pointer-events:none;z-index:1;
+  animation:nebula-drift 8s ease-in-out infinite alternate;
+}
+@keyframes nebula-drift{from{transform:scale(1) rotate(-2deg)}to{transform:scale(1.08) rotate(2deg)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:700px){
+  .reflex-layout{flex-direction:column}
+  .reflex-img{width:100%;height:180px}
+}
 </style>
 <style>
 #s1{width:1px;height:1px;background:transparent;box-shadow:1637px 518px rgba(255,255,255,1.0), 668px 405px rgba(255,255,255,1.0), 493px 396px rgba(255,255,255,1.0), 1685px 236px rgba(255,255,255,1.0), 599px 976px rgba(255,255,255,1.0), 1952px 1143px rgba(255,255,255,1.0), 1253px 488px rgba(255,255,255,1.0), 298px 1139px rgba(255,255,255,1.0), 1292px 1026px rgba(255,255,255,1.0), 5px 574px rgba(255,255,255,1.0), 59px 1019px rgba(255,255,255,1.0), 354px 392px rgba(255,255,255,1.0), 1039px 796px rgba(255,255,255,1.0), 375px 679px rgba(255,255,255,1.0), 659px 241px rgba(255,255,255,1.0), 179px 1129px rgba(255,255,255,1.0), 1595px 534px rgba(255,255,255,1.0), 1094px 962px rgba(255,255,255,1.0), 420px 463px rgba(255,255,255,1.0), 393px 148px rgba(255,255,255,1.0), 166px 410px rgba(255,255,255,1.0), 1428px 1148px rgba(255,255,255,1.0), 1846px 897px rgba(255,255,255,1.0), 1220px 1104px rgba(255,255,255,1.0), 157px 205px rgba(255,255,255,1.0), 1720px 435px rgba(255,255,255,1.0), 1522px 674px rgba(255,255,255,1.0), 1741px 180px rgba(255,255,255,1.0), 195px 1182px rgba(255,255,255,1.0), 945px 163px rgba(255,255,255,1.0), 1878px 1102px rgba(255,255,255,1.0), 1994px 219px rgba(255,255,255,1.0), 557px 911px rgba(255,255,255,1.0), 1285px 1131px rgba(255,255,255,1.0), 1998px 249px rgba(255,255,255,1.0), 720px 1085px rgba(255,255,255,1.0), 116px 828px rgba(255,255,255,1.0), 1539px 1193px rgba(255,255,255,1.0), 1938px 1088px rgba(255,255,255,1.0), 508px 449px rgba(255,255,255,1.0), 1173px 968px rgba(255,255,255,1.0), 825px 284px rgba(255,255,255,1.0), 1574px 788px rgba(255,255,255,1.0), 27px 72px rgba(255,255,255,1.0), 107px 1016px rgba(255,255,255,1.0), 1296px 81px rgba(255,255,255,1.0), 1528px 734px rgba(255,255,255,1.0), 1557px 887px rgba(255,255,255,1.0), 242px 525px rgba(255,255,255,1.0), 1033px 1153px rgba(255,255,255,1.0), 1410px 1002px rgba(255,255,255,1.0), 115px 966px rgba(255,255,255,1.0), 1685px 195px rgba(255,255,255,1.0), 302px 611px rgba(255,255,255,1.0), 1088px 189px rgba(255,255,255,1.0), 36px 995px rgba(255,255,255,1.0), 1875px 723px rgba(255,255,255,1.0), 1892px 851px rgba(255,255,255,1.0), 1179px 2px rgba(255,255,255,1.0), 128px 986px rgba(255,255,255,1.0), 300px 55px rgba(255,255,255,1.0), 1436px 17px rgba(255,255,255,1.0), 492px 181px rgba(255,255,255,1.0), 1366px 955px rgba(255,255,255,1.0), 233px 800px rgba(255,255,255,1.0), 1996px 975px rgba(255,255,255,1.0), 212px 278px rgba(255,255,255,1.0), 491px 536px rgba(255,255,255,1.0), 430px 177px rgba(255,255,255,1.0), 331px 337px rgba(255,255,255,1.0), 306px 52px rgba(255,255,255,1.0), 104px 478px rgba(255,255,255,1.0), 1374px 1028px rgba(255,255,255,1.0), 1577px 777px rgba(255,255,255,1.0), 1981px 1181px rgba(255,255,255,1.0), 1459px 855px rgba(255,255,255,1.0), 1003px 1038px rgba(255,255,255,1.0), 549px 212px rgba(255,255,255,1.0), 966px 850px rgba(255,255,255,1.0), 605px 1108px rgba(255,255,255,1.0), 566px 590px rgba(255,255,255,1.0), 930px 388px rgba(255,255,255,1.0), 38px 997px rgba(255,255,255,1.0), 145px 74px rgba(255,255,255,1.0), 39px 290px rgba(255,255,255,1.0), 19px 185px rgba(255,255,255,1.0), 1349px 224px rgba(255,255,255,1.0), 1046px 418px rgba(255,255,255,1.0), 1391px 171px rgba(255,255,255,1.0), 1596px 871px rgba(255,255,255,1.0), 339px 223px rgba(255,255,255,1.0), 1949px 788px rgba(255,255,255,1.0), 582px 943px rgba(255,255,255,1.0), 1797px 1001px rgba(255,255,255,1.0), 1091px 824px rgba(255,255,255,1.0), 398px 877px rgba(255,255,255,1.0), 1732px 515px rgba(255,255,255,1.0), 581px 177px rgba(255,255,255,1.0), 1758px 1073px rgba(255,255,255,1.0), 663px 646px rgba(255,255,255,1.0), 1872px 397px rgba(255,255,255,1.0), 1589px 576px rgba(255,255,255,1.0), 1987px 755px rgba(255,255,255,1.0), 1546px 980px rgba(255,255,255,1.0), 1535px 1075px rgba(255,255,255,1.0), 807px 1033px rgba(255,255,255,1.0), 1095px 821px rgba(255,255,255,1.0), 1985px 523px rgba(255,255,255,1.0), 776px 1151px rgba(255,255,255,1.0), 1728px 634px rgba(255,255,255,1.0), 1895px 162px rgba(255,255,255,1.0), 562px 212px rgba(255,255,255,1.0), 298px 282px rgba(255,255,255,1.0), 737px 101px rgba(255,255,255,1.0), 435px 1149px rgba(255,255,255,1.0), 1240px 1188px rgba(255,255,255,1.0), 117px 1081px rgba(255,255,255,1.0), 46px 246px rgba(255,255,255,1.0), 1310px 262px rgba(255,255,255,1.0), 555px 330px rgba(255,255,255,1.0), 1337px 703px rgba(255,255,255,1.0), 124px 1057px rgba(255,255,255,1.0), 1500px 1194px rgba(255,255,255,1.0), 1957px 772px rgba(255,255,255,1.0), 178px 616px rgba(255,255,255,1.0), 162px 737px rgba(255,255,255,1.0), 930px 11px rgba(255,255,255,1.0), 97px 922px rgba(255,255,255,1.0), 1533px 305px rgba(255,255,255,1.0), 1015px 829px rgba(255,255,255,1.0), 1615px 1092px rgba(255,255,255,1.0), 1742px 158px rgba(255,255,255,1.0), 881px 10px rgba(255,255,255,1.0), 225px 65px rgba(255,255,255,1.0), 770px 260px rgba(255,255,255,1.0), 79px 536px rgba(255,255,255,1.0), 1675px 523px rgba(255,255,255,1.0), 1297px 358px rgba(255,255,255,1.0), 1112px 180px rgba(255,255,255,1.0), 143px 93px rgba(255,255,255,1.0), 1128px 795px rgba(255,255,255,1.0), 1048px 147px rgba(255,255,255,1.0), 366px 987px rgba(255,255,255,1.0), 418px 1109px rgba(255,255,255,1.0), 1163px 661px rgba(255,255,255,1.0), 665px 961px rgba(255,255,255,1.0), 471px 389px rgba(255,255,255,1.0), 996px 1183px rgba(255,255,255,1.0), 894px 1159px rgba(255,255,255,1.0), 792px 1141px rgba(255,255,255,1.0), 1605px 401px rgba(255,255,255,1.0), 824px 198px rgba(255,255,255,1.0), 434px 629px rgba(255,255,255,1.0), 1318px 678px rgba(255,255,255,1.0), 696px 880px rgba(255,255,255,1.0), 392px 1031px rgba(255,255,255,1.0), 1026px 724px rgba(255,255,255,1.0), 1608px 437px rgba(255,255,255,1.0), 521px 727px rgba(255,255,255,1.0), 1632px 463px rgba(255,255,255,1.0), 1923px 324px rgba(255,255,255,1.0), 707px 299px rgba(255,255,255,1.0), 1703px 543px rgba(255,255,255,1.0), 1079px 916px rgba(255,255,255,1.0), 599px 620px rgba(255,255,255,1.0), 1009px 491px rgba(255,255,255,1.0), 1426px 193px rgba(255,255,255,1.0), 983px 140px rgba(255,255,255,1.0), 572px 593px rgba(255,255,255,1.0), 355px 19px rgba(255,255,255,1.0), 1864px 606px rgba(255,255,255,1.0), 1193px 859px rgba(255,255,255,1.0), 885px 1068px rgba(255,255,255,1.0), 1076px 866px rgba(255,255,255,1.0), 1416px 820px rgba(255,255,255,1.0), 1796px 210px rgba(255,255,255,1.0), 1408px 902px rgba(255,255,255,1.0), 1649px 1110px rgba(255,255,255,1.0), 729px 969px rgba(255,255,255,1.0), 1004px 784px rgba(255,255,255,1.0), 1831px 348px rgba(255,255,255,1.0), 791px 796px rgba(255,255,255,1.0), 1777px 1136px rgba(255,255,255,1.0), 880px 535px rgba(255,255,255,1.0), 50px 625px rgba(255,255,255,1.0), 1940px 583px rgba(255,255,255,1.0), 899px 1047px rgba(255,255,255,1.0), 1784px 905px rgba(255,255,255,1.0), 1394px 1163px rgba(255,255,255,1.0), 42px 1181px rgba(255,255,255,1.0), 157px 796px rgba(255,255,255,1.0), 678px 765px rgba(255,255,255,1.0), 1346px 545px rgba(255,255,255,1.0), 1225px 226px rgba(255,255,255,1.0), 718px 730px rgba(255,255,255,1.0), 300px 253px rgba(255,255,255,1.0), 913px 295px rgba(255,255,255,1.0), 339px 99px rgba(255,255,255,1.0), 1010px 1182px rgba(255,255,255,1.0), 603px 704px rgba(255,255,255,1.0), 732px 190px rgba(255,255,255,1.0), 1808px 525px rgba(255,255,255,1.0), 1583px 281px rgba(255,255,255,1.0), 355px 675px rgba(255,255,255,1.0), 874px 50px rgba(255,255,255,1.0), 970px 207px rgba(255,255,255,1.0), 1044px 885px rgba(255,255,255,1.0), 475px 411px rgba(255,255,255,1.0), 1474px 73px rgba(255,255,255,1.0), 1923px 990px rgba(255,255,255,1.0), 220px 870px rgba(255,255,255,1.0), 1858px 45px rgba(255,255,255,1.0), 186px 62px rgba(255,255,255,1.0), 119px 735px rgba(255,255,255,1.0), 997px 958px rgba(255,255,255,1.0), 570px 832px rgba(255,255,255,1.0), 1102px 158px rgba(255,255,255,1.0), 1784px 398px rgba(255,255,255,1.0), 1044px 743px rgba(255,255,255,1.0), 1062px 473px rgba(255,255,255,1.0), 1197px 65px rgba(255,255,255,1.0), 1358px 1181px rgba(255,255,255,1.0), 1951px 338px rgba(255,255,255,1.0), 367px 1148px rgba(255,255,255,1.0), 1626px 437px rgba(255,255,255,1.0), 569px 719px rgba(255,255,255,1.0), 1942px 624px rgba(255,255,255,1.0), 108px 1117px rgba(255,255,255,1.0), 1097px 178px rgba(255,255,255,1.0), 1069px 387px rgba(255,255,255,1.0), 750px 922px rgba(255,255,255,1.0), 1445px 982px rgba(255,255,255,1.0), 1936px 503px rgba(255,255,255,1.0), 235px 1117px rgba(255,255,255,1.0), 983px 919px rgba(255,255,255,1.0), 1500px 786px rgba(255,255,255,1.0), 1488px 841px rgba(255,255,255,1.0), 1210px 947px rgba(255,255,255,1.0), 197px 758px rgba(255,255,255,1.0), 345px 251px rgba(255,255,255,1.0), 1310px 1018px rgba(255,255,255,1.0), 479px 582px rgba(255,255,255,1.0), 1652px 1040px rgba(255,255,255,1.0), 1957px 641px rgba(255,255,255,1.0), 1527px 540px rgba(255,255,255,1.0), 676px 977px rgba(255,255,255,1.0), 749px 645px rgba(255,255,255,1.0), 470px 61px rgba(255,255,255,1.0), 91px 55px rgba(255,255,255,1.0), 1982px 1141px rgba(255,255,255,1.0), 512px 52px rgba(255,255,255,1.0), 867px 187px rgba(255,255,255,1.0), 1944px 422px rgba(255,255,255,1.0), 1496px 873px rgba(255,255,255,1.0), 468px 998px rgba(255,255,255,1.0), 1465px 507px rgba(255,255,255,1.0), 625px 678px rgba(255,255,255,1.0), 483px 240px rgba(255,255,255,1.0), 1325px 684px rgba(255,255,255,1.0), 1001px 1182px rgba(255,255,255,1.0), 1018px 371px rgba(255,255,255,1.0), 1944px 820px rgba(255,255,255,1.0), 991px 838px rgba(255,255,255,1.0), 311px 384px rgba(255,255,255,1.0), 62px 74px rgba(255,255,255,1.0), 103px 349px rgba(255,255,255,1.0), 33px 749px rgba(255,255,255,1.0), 1972px 1006px rgba(255,255,255,1.0), 522px 1148px rgba(255,255,255,1.0), 959px 1042px rgba(255,255,255,1.0), 187px 574px rgba(255,255,255,1.0), 866px 1117px rgba(255,255,255,1.0), 197px 960px rgba(255,255,255,1.0), 76px 278px rgba(255,255,255,1.0), 1896px 753px rgba(255,255,255,1.0), 946px 376px rgba(255,255,255,1.0), 215px 334px rgba(255,255,255,1.0), 1918px 1146px rgba(255,255,255,1.0), 1875px 552px rgba(255,255,255,1.0), 1548px 608px rgba(255,255,255,1.0), 1892px 235px rgba(255,255,255,1.0), 1986px 755px rgba(255,255,255,1.0), 1972px 1069px rgba(255,255,255,1.0), 528px 32px rgba(255,255,255,1.0), 325px 595px rgba(255,255,255,1.0), 552px 906px rgba(255,255,255,1.0), 457px 846px rgba(255,255,255,1.0), 520px 697px rgba(255,255,255,1.0), 356px 14px rgba(255,255,255,1.0), 1139px 991px rgba(255,255,255,1.0), 1760px 382px rgba(255,255,255,1.0), 1455px 67px rgba(255,255,255,1.0), 1627px 62px rgba(255,255,255,1.0), 1621px 893px rgba(255,255,255,1.0), 1316px 792px rgba(255,255,255,1.0), 433px 811px rgba(255,255,255,1.0), 266px 253px rgba(255,255,255,1.0), 1885px 634px rgba(255,255,255,1.0), 1663px 220px rgba(255,255,255,1.0), 1709px 696px rgba(255,255,255,1.0), 1883px 633px rgba(255,255,255,1.0), 448px 953px rgba(255,255,255,1.0), 1853px 506px rgba(255,255,255,1.0), 1114px 558px rgba(255,255,255,1.0), 1396px 808px rgba(255,255,255,1.0), 215px 263px rgba(255,255,255,1.0), 1368px 53px rgba(255,255,255,1.0), 240px 1050px rgba(255,255,255,1.0), 1198px 57px rgba(255,255,255,1.0), 282px 631px rgba(255,255,255,1.0), 862px 225px rgba(255,255,255,1.0), 921px 564px rgba(255,255,255,1.0), 1275px 265px rgba(255,255,255,1.0), 492px 1080px rgba(255,255,255,1.0), 310px 1015px rgba(255,255,255,1.0), 1661px 177px rgba(255,255,255,1.0), 1454px 691px rgba(255,255,255,1.0), 1236px 1070px rgba(255,255,255,1.0), 463px 885px rgba(255,255,255,1.0), 817px 779px rgba(255,255,255,1.0), 1456px 814px rgba(255,255,255,1.0), 52px 410px rgba(255,255,255,1.0), 429px 77px rgba(255,255,255,1.0), 1274px 423px rgba(255,255,255,1.0), 805px 874px rgba(255,255,255,1.0), 226px 196px rgba(255,255,255,1.0), 1126px 315px rgba(255,255,255,1.0), 1073px 734px rgba(255,255,255,1.0), 1238px 1034px rgba(255,255,255,1.0), 1171px 1062px rgba(255,255,255,1.0), 1534px 314px rgba(255,255,255,1.0), 340px 619px rgba(255,255,255,1.0), 928px 283px rgba(255,255,255,1.0), 1840px 137px rgba(255,255,255,1.0), 1091px 130px rgba(255,255,255,1.0), 147px 3px rgba(255,255,255,1.0), 852px 550px rgba(255,255,255,1.0), 805px 605px rgba(255,255,255,1.0), 299px 1075px rgba(255,255,255,1.0), 476px 932px rgba(255,255,255,1.0), 1687px 34px rgba(255,255,255,1.0), 839px 936px rgba(255,255,255,1.0), 833px 828px rgba(255,255,255,1.0), 522px 738px rgba(255,255,255,1.0), 1754px 83px rgba(255,255,255,1.0), 1707px 247px rgba(255,255,255,1.0), 474px 633px rgba(255,255,255,1.0), 117px 1084px rgba(255,255,255,1.0), 1265px 199px rgba(255,255,255,1.0), 617px 598px rgba(255,255,255,1.0), 194px 901px rgba(255,255,255,1.0), 1563px 892px rgba(255,255,255,1.0), 447px 884px rgba(255,255,255,1.0), 650px 153px rgba(255,255,255,1.0), 1882px 57px rgba(255,255,255,1.0), 582px 879px rgba(255,255,255,1.0), 649px 595px rgba(255,255,255,1.0), 610px 59px rgba(255,255,255,1.0), 625px 572px rgba(255,255,255,1.0), 734px 176px rgba(255,255,255,1.0), 416px 40px rgba(255,255,255,1.0), 1019px 1028px rgba(255,255,255,1.0), 975px 250px rgba(255,255,255,1.0), 1415px 703px rgba(255,255,255,1.0), 1775px 789px rgba(255,255,255,1.0), 1915px 126px rgba(255,255,255,1.0), 1819px 1168px rgba(255,255,255,1.0), 1560px 773px rgba(255,255,255,1.0), 1711px 636px rgba(255,255,255,1.0), 486px 1139px rgba(255,255,255,1.0), 1447px 329px rgba(255,255,255,1.0), 1190px 451px rgba(255,255,255,1.0), 27px 802px rgba(255,255,255,1.0), 1796px 995px rgba(255,255,255,1.0), 70px 884px rgba(255,255,255,1.0), 1974px 826px rgba(255,255,255,1.0), 766px 621px rgba(255,255,255,1.0), 169px 87px rgba(255,255,255,1.0), 42px 1089px rgba(255,255,255,1.0), 1497px 470px rgba(255,255,255,1.0), 784px 1042px rgba(255,255,255,1.0), 1761px 587px rgba(255,255,255,1.0), 1858px 20px rgba(255,255,255,1.0), 511px 804px rgba(255,255,255,1.0), 758px 943px rgba(255,255,255,1.0), 1397px 1055px rgba(255,255,255,1.0), 701px 821px rgba(255,255,255,1.0), 1556px 1060px rgba(255,255,255,1.0), 1205px 47px rgba(255,255,255,1.0), 862px 1183px rgba(255,255,255,1.0), 867px 895px rgba(255,255,255,1.0), 390px 18px rgba(255,255,255,1.0), 1228px 112px rgba(255,255,255,1.0), 1936px 221px rgba(255,255,255,1.0), 191px 970px rgba(255,255,255,1.0), 604px 415px rgba(255,255,255,1.0), 693px 700px rgba(255,255,255,1.0), 560px 450px rgba(255,255,255,1.0), 957px 1122px rgba(255,255,255,1.0), 1616px 365px rgba(255,255,255,1.0), 682px 268px rgba(255,255,255,1.0), 1591px 1129px rgba(255,255,255,1.0), 757px 724px rgba(255,255,255,1.0), 1242px 128px rgba(255,255,255,1.0), 325px 858px rgba(255,255,255,1.0), 273px 867px rgba(255,255,255,1.0), 779px 826px rgba(255,255,255,1.0), 384px 83px rgba(255,255,255,1.0), 1619px 1198px rgba(255,255,255,1.0), 1130px 201px rgba(255,255,255,1.0), 1700px 1030px rgba(255,255,255,1.0), 1214px 866px rgba(255,255,255,1.0), 277px 435px rgba(255,255,255,1.0), 1211px 1146px rgba(255,255,255,1.0), 1751px 341px rgba(255,255,255,1.0), 266px 822px rgba(255,255,255,1.0), 249px 319px rgba(255,255,255,1.0), 1040px 35px rgba(255,255,255,1.0), 1413px 714px rgba(255,255,255,1.0), 399px 484px rgba(255,255,255,1.0), 797px 42px rgba(255,255,255,1.0), 1315px 107px rgba(255,255,255,1.0), 1910px 1003px rgba(255,255,255,1.0), 1787px 968px rgba(255,255,255,1.0), 1060px 1007px rgba(255,255,255,1.0), 966px 227px rgba(255,255,255,1.0), 79px 1165px rgba(255,255,255,1.0), 640px 328px rgba(255,255,255,1.0), 977px 561px rgba(255,255,255,1.0), 34px 121px rgba(255,255,255,1.0), 201px 1167px rgba(255,255,255,1.0), 1688px 356px rgba(255,255,255,1.0), 978px 248px rgba(255,255,255,1.0), 748px 628px rgba(255,255,255,1.0), 1973px 192px rgba(255,255,255,1.0), 1472px 784px rgba(255,255,255,1.0), 1888px 20px rgba(255,255,255,1.0), 1086px 467px rgba(255,255,255,1.0), 284px 143px rgba(255,255,255,1.0), 227px 982px rgba(255,255,255,1.0), 723px 234px rgba(255,255,255,1.0), 525px 516px rgba(255,255,255,1.0), 861px 1020px rgba(255,255,255,1.0), 652px 634px rgba(255,255,255,1.0), 1433px 237px rgba(255,255,255,1.0), 1346px 931px rgba(255,255,255,1.0), 903px 233px rgba(255,255,255,1.0), 296px 92px rgba(255,255,255,1.0), 614px 217px rgba(255,255,255,1.0), 16px 54px rgba(255,255,255,1.0), 654px 952px rgba(255,255,255,1.0), 842px 187px rgba(255,255,255,1.0), 1113px 925px rgba(255,255,255,1.0), 487px 1172px rgba(255,255,255,1.0), 493px 611px rgba(255,255,255,1.0), 1383px 902px rgba(255,255,255,1.0), 1045px 887px rgba(255,255,255,1.0), 650px 221px rgba(255,255,255,1.0), 1077px 69px rgba(255,255,255,1.0), 1527px 1122px rgba(255,255,255,1.0), 311px 352px rgba(255,255,255,1.0), 378px 273px rgba(255,255,255,1.0), 1136px 1023px rgba(255,255,255,1.0), 1081px 440px rgba(255,255,255,1.0), 1162px 166px rgba(255,255,255,1.0), 1967px 324px rgba(255,255,255,1.0), 1787px 716px rgba(255,255,255,1.0), 408px 359px rgba(255,255,255,1.0), 671px 611px rgba(255,255,255,1.0), 112px 869px rgba(255,255,255,1.0), 75px 785px rgba(255,255,255,1.0), 755px 754px rgba(255,255,255,1.0), 1983px 366px rgba(255,255,255,1.0), 210px 1163px rgba(255,255,255,1.0), 1140px 475px rgba(255,255,255,1.0), 1593px 71px rgba(255,255,255,1.0), 1918px 767px rgba(255,255,255,1.0), 895px 393px rgba(255,255,255,1.0), 1664px 676px rgba(255,255,255,1.0), 151px 761px rgba(255,255,255,1.0), 657px 115px rgba(255,255,255,1.0), 91px 3px rgba(255,255,255,1.0), 94px 362px rgba(255,255,255,1.0), 1123px 726px rgba(255,255,255,1.0), 88px 112px rgba(255,255,255,1.0), 1780px 999px rgba(255,255,255,1.0), 332px 784px rgba(255,255,255,1.0), 1311px 613px rgba(255,255,255,1.0), 1955px 349px rgba(255,255,255,1.0), 213px 537px rgba(255,255,255,1.0), 1483px 1003px rgba(255,255,255,1.0), 137px 528px rgba(255,255,255,1.0), 981px 1147px rgba(255,255,255,1.0), 1652px 305px rgba(255,255,255,1.0), 1388px 78px rgba(255,255,255,1.0), 1743px 956px rgba(255,255,255,1.0), 780px 1053px rgba(255,255,255,1.0), 1496px 203px rgba(255,255,255,1.0), 1867px 422px rgba(255,255,255,1.0), 990px 129px rgba(255,255,255,1.0)}
@@ -524,6 +704,64 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
   .score-ring{border:4px solid #333!important}
   .score-n{color:#333!important}
   .print-btn{display:none!important}
+}
+
+/* ══ SLIDE 2: botones info opcionales ══ */
+.s2-info-btn{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  color:var(--muted);font-family:var(--fbody);font-size:.82rem;
+  padding:9px 16px;border-radius:var(--r2);cursor:pointer;
+  transition:all .2s;white-space:nowrap;
+}
+.s2-info-btn:hover{background:var(--bluef);border-color:rgba(77,166,255,.4);color:var(--white)}
+
+/* ══ MAPA DEL MÓDULO V2 — botones clicables ══ */
+.module-map-v2{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.mm2-step{
+  display:flex;flex-direction:column;align-items:center;
+  background:rgba(255,255,255,.03);border:1px solid var(--border);
+  border-radius:var(--r);padding:12px 16px;cursor:pointer;
+  transition:all .22s;flex:1;min-width:90px;max-width:130px;
+  font-family:inherit;
+}
+.mm2-step:hover{background:var(--bluef);border-color:var(--blue);transform:translateY(-3px);box-shadow:0 6px 20px rgba(77,166,255,.2)}
+.mm2-step:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.mm2-icon{font-size:1.5rem;margin-bottom:5px}
+.mm2-lbl{font-family:var(--fhead);font-size:.62rem;letter-spacing:1px;color:var(--blue);text-transform:uppercase;margin-bottom:2px}
+.mm2-sub{font-size:.7rem;color:var(--muted)}
+.mm2-arrow{color:var(--gold);font-size:1.2rem;flex-shrink:0;align-self:center}
+
+/* ── ÓRBITAS MÁS VISIBLES ── */
+.orbit-deco{opacity:.25 !important}
+.orbit-ring.or1{border-color:rgba(77,166,255,.7) !important;border-width:1.5px}
+.orbit-ring.or2{border-color:rgba(245,200,66,.6) !important;border-width:1.5px}
+.orbit-ring.or3{border-color:rgba(29,184,122,.7) !important;border-width:1.5px}
+
+/* ── PLANET PANEL 3D ── */
+.planet-data-panel{
+  will-change:transform;
+  transform:perspective(900px) rotateY(0deg) rotateX(0deg) translateZ(0);
+  transition:transform .4s ease;
+  border-radius:0 var(--r) var(--r) 0;
+}
+
+/* ── SLIDES QUE TIENEN ÓRBITAS: asegurar posición relative ── */
+#s3c{position:relative !important}
+
+/* ── SÍNTESIS: tabla más grande ── */
+.synth-table{font-size:.88rem}
+.synth-table th{font-size:.65rem;padding:12px 12px 8px}
+.synth-table td{padding:10px 12px}
+
+/* ── PLANET SLIDES: mejorar alineación del panel de datos ── */
+.planet-data-panel{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:24px 28px 20px;
+}
+
+/* ── SLIDES CENTRADOS: asegurar que ocupen el espacio ── */
+#s10c .slide-body,#s9bc .slide-body{
+  flex:1;
 }
 </style>
 </head>
@@ -590,6 +828,7 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
   <div class="premium-cover">
       <div class="premium-bg-gradient"></div>
       <div class="premium-stars"></div>
+      <div class="premium-nebula" aria-hidden="true"></div>
       <div class="premium-glow"></div>
 
       <div class="premium-content">
@@ -610,67 +849,84 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
   </div>
 </div>
 
-<!-- SLIDE 2: OBJETIVOS -->
+<!-- SLIDE 2: OBJETIVOS — baja carga cognitiva + mapa clicable -->
 <div class="slide" id="s2c" aria-label="Diapositiva 2: Objetivos de aprendizaje">
   <div class="slide-strip">
     <span class="strip-label">📋 Objetivos</span>
     <span class="strip-dcd">DCD CN.4.4.3 · I.CN.4.12.1</span>
   </div>
-  <div class="slide-body">
-    <p class="sec-title">Objetivo específico del módulo T3</p>
-    <div class="obj-main" role="region" aria-label="Objetivo de aprendizaje principal">
-      <strong class="text-gold">Comparar</strong> las características físicas observables de Júpiter, Saturno, Urano y Neptuno,
-      <strong>diferenciando gigantes gaseosos de helados</strong> en al menos 3 criterios (composición, tamaño y rasgo visual),
-      mediante la observación de imágenes reales de la NASA y simulaciones interactivas con uso de TIC.
-    </div>
-    <div class="obj-mager" role="table" aria-label="Desglose del objetivo en formato Mager">
-      <div class="mager-box">
-        <p class="mager-lbl">Verbo (conducta)</p>
-        <p class="mager-val text-gold">Comparar</p>
+  <div class="slide-body" style="display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:20px 28px 10px">
+
+    <!-- OBJETIVO CENTRAL -->
+    <div>
+      <p class="sec-title" style="margin-bottom:10px">Objetivo del módulo T3</p>
+      <div class="obj-main" role="region" aria-label="Objetivo de aprendizaje principal" style="font-size:.95rem;line-height:1.75;margin-bottom:18px">
+        <strong class="text-gold">Comparar</strong> las características físicas observables de Júpiter, Saturno, Urano y Neptuno,
+        <strong>diferenciando gigantes gaseosos de helados</strong> en al menos 3 criterios (composición, tamaño y rasgo visual),
+        mediante imágenes reales de la NASA y simulaciones interactivas con uso de TIC.
       </div>
-      <div class="mager-box">
-        <p class="mager-lbl">Contenido</p>
-        <p class="mager-val">4 planetas exteriores del SS</p>
-      </div>
-      <div class="mager-box">
-        <p class="mager-lbl">Condición</p>
-        <p class="mager-val">Imágenes NASA + simulaciones TIC</p>
-      </div>
-      <div class="mager-box">
-        <p class="mager-lbl">Criterio</p>
-        <p class="mager-val">≥ 3 criterios gaseoso/helado + rasgo visual por planeta</p>
+
+      <!-- BOTONES OPCIONALES -->
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px" role="group" aria-label="Información adicional opcional">
+        <button class="s2-info-btn" onclick="document.getElementById('s2-modal-mager').style.display='flex'" aria-label="Ver desglose del objetivo en formato Mager">🎯 Desglose del objetivo</button>
+        <button class="s2-info-btn" onclick="document.getElementById('s2-modal-prereqs').style.display='flex'" aria-label="Ver conocimientos previos">📚 Conocimientos previos</button>
+        <button class="s2-info-btn" onclick="document.getElementById('s2-modal-curricular').style.display='flex'" aria-label="Ver vinculación curricular">🔗 Vinculación curricular</button>
+        <button class="s2-info-btn" onclick="document.getElementById('s2-modal-ruta').style.display='flex'" aria-label="Elegir ruta de aprendizaje">🗺️ Elegir mi ruta</button>
       </div>
     </div>
-    <p class="sec-title" style="margin-top:16px">Mapa del módulo</p>
-    <div class="module-map" role="navigation" aria-label="Estructura del módulo">
-      <div class="mm-step"><div class="mm-icon">📖</div><div class="mm-lbl">Contenidos</div></div>
-      <span class="mm-arrow">→</span>
-      <div class="mm-step"><div class="mm-icon">🪐</div><div class="mm-lbl">Los 4 Planetas</div></div>
-      <span class="mm-arrow">→</span>
-      <div class="mm-step"><div class="mm-icon">📊</div><div class="mm-lbl">Síntesis</div></div>
-      <span class="mm-arrow">→</span>
-      <div class="mm-step"><div class="mm-icon">⚡</div><div class="mm-lbl">Actividad</div></div>
-      <span class="mm-arrow">→</span>
-      <div class="mm-step"><div class="mm-icon">📝</div><div class="mm-lbl">Evaluación</div></div>
+
+    <!-- MAPA DEL MÓDULO CLICABLE -->
+    <div>
+      <p class="sec-title" style="margin-bottom:12px">Mapa del módulo — haz clic para navegar</p>
+      <nav class="module-map-v2" role="navigation" aria-label="Índice del módulo">
+        <button class="mm2-step" onclick="goSlide(2)" aria-label="Ir a Contexto"><span class="mm2-icon">🌌</span><span class="mm2-lbl">Contexto</span><span class="mm2-sub">¿Qué son?</span></button>
+        <span class="mm2-arrow" aria-hidden="true">›</span>
+        <button class="mm2-step" onclick="goSlide(3)" aria-label="Ir a Clasificación"><span class="mm2-icon">🔬</span><span class="mm2-lbl">Clasificación</span><span class="mm2-sub">Gas vs Hielo</span></button>
+        <span class="mm2-arrow" aria-hidden="true">›</span>
+        <button class="mm2-step" onclick="goSlide(4)" aria-label="Ir a los 4 Planetas"><span class="mm2-icon">🪐</span><span class="mm2-lbl">Los 4 Planetas</span><span class="mm2-sub">Fichas NASA</span></button>
+        <span class="mm2-arrow" aria-hidden="true">›</span>
+        <button class="mm2-step" onclick="goSlide(8)" aria-label="Ir a Síntesis"><span class="mm2-icon">📊</span><span class="mm2-lbl">Síntesis</span><span class="mm2-sub">Tabla comparativa</span></button>
+        <span class="mm2-arrow" aria-hidden="true">›</span>
+        <button class="mm2-step" onclick="goSlide(11)" aria-label="Ir a Actividad"><span class="mm2-icon">⚡</span><span class="mm2-lbl">Actividad</span><span class="mm2-sub">2 fases</span></button>
+        <span class="mm2-arrow" aria-hidden="true">›</span>
+        <button class="mm2-step" onclick="goSlide(14)" aria-label="Ir a Evaluación"><span class="mm2-icon">📝</span><span class="mm2-lbl">Evaluación</span><span class="mm2-sub">4 preguntas</span></button>
+      </nav>
     </div>
-    <div style="margin-top:14px;background:rgba(77,166,255,.07);border:1px solid rgba(77,166,255,.15);border-radius:8px;padding:12px 16px;font-size:.84rem">
-      <strong class="text-blue">Vinculación curricular:</strong>
-      Bloque 4 «La Tierra y el Universo» · OG.CN.5 · ODS 4 Meta 4.4 · Indicador I.CN.4.12.1
+
+  </div>
+</div>
+
+<!-- MODAL: DESGLOSE MAGER -->
+<div id="s2-modal-mager" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9999;align-items:center;justify-content:center;" onclick="if(event.target===this)this.style.display='none'" role="dialog" aria-modal="true">
+  <div style="background:#0d1530;border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;max-width:620px;width:92%">
+    <h3 style="font-family:var(--fhead);color:var(--gold);font-size:.85rem;letter-spacing:2px;margin-bottom:18px">🎯 OBJETIVO EN FORMATO MAGER</h3>
+    <div class="obj-mager" role="table" style="grid-template-columns:1fr 1fr;gap:12px">
+      <div class="mager-box"><p class="mager-lbl">Verbo (conducta)</p><p class="mager-val text-gold">Comparar</p></div>
+      <div class="mager-box"><p class="mager-lbl">Contenido</p><p class="mager-val">4 planetas exteriores del SS</p></div>
+      <div class="mager-box"><p class="mager-lbl">Condición</p><p class="mager-val">Imágenes NASA + simulaciones TIC</p></div>
+      <div class="mager-box"><p class="mager-lbl">Criterio</p><p class="mager-val">≥ 3 criterios gaseoso/helado + rasgo visual por planeta</p></div>
     </div>
-    <p class="sec-title" style="margin-top:20px">Conocimientos previos requeridos</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
-      <div style="background:rgba(77,166,255,.06);border:1px solid rgba(77,166,255,.15);border-radius:var(--r);padding:14px 16px;font-size:.86rem">
-        <p style="font-family:var(--fhead);font-size:.62rem;color:var(--blue);letter-spacing:1.5px;margin-bottom:8px">✓ LO QUE DEBES SABER</p>
-        <ul class="sp">
+    <button onclick="document.getElementById('s2-modal-mager').style.display='none'" style="margin-top:18px;background:var(--gold);color:var(--bg);font-family:var(--fhead);font-size:.7rem;letter-spacing:1.5px;border:none;padding:9px 22px;border-radius:var(--r2);cursor:pointer">CERRAR</button>
+  </div>
+</div>
+
+<!-- MODAL: CONOCIMIENTOS PREVIOS -->
+<div id="s2-modal-prereqs" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9999;align-items:center;justify-content:center;" onclick="if(event.target===this)this.style.display='none'" role="dialog" aria-modal="true">
+  <div style="background:#0d1530;border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;max-width:580px;width:92%">
+    <h3 style="font-family:var(--fhead);color:var(--gold);font-size:.85rem;letter-spacing:2px;margin-bottom:18px">📚 CONOCIMIENTOS PREVIOS REQUERIDOS</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:rgba(77,166,255,.06);border:1px solid rgba(77,166,255,.15);border-radius:var(--r);padding:14px 16px">
+        <p style="font-family:var(--fhead);font-size:.6rem;color:var(--blue);letter-spacing:1.5px;margin-bottom:10px">✓ LO QUE DEBES SABER</p>
+        <ul class="sp" style="font-size:.87rem">
           <li>Concepto básico del Sistema Solar y sus 8 planetas</li>
           <li>Diferencia entre planeta, luna y estrella</li>
           <li>Uso elemental del navegador web</li>
           <li>Ciencias Naturales de EGB Media (6to–7mo grado)</li>
         </ul>
       </div>
-      <div style="background:rgba(245,200,66,.06);border:1px solid rgba(245,200,66,.15);border-radius:var(--r);padding:14px 16px;font-size:.86rem">
-        <p style="font-family:var(--fhead);font-size:.62rem;color:var(--gold);letter-spacing:1.5px;margin-bottom:8px">📚 REFERENCIA CURRICULAR</p>
-        <ul class="sp">
+      <div style="background:rgba(245,200,66,.06);border:1px solid rgba(245,200,66,.15);border-radius:var(--r);padding:14px 16px">
+        <p style="font-family:var(--fhead);font-size:.6rem;color:var(--gold);letter-spacing:1.5px;margin-bottom:10px">📚 REFERENCIA CURRICULAR</p>
+        <ul class="sp" style="font-size:.87rem">
           <li>DCD CN.4.4.3 · Currículo Priorizado EGB Superior, MinEduc 2016</li>
           <li>Bloque 4: La Tierra y el Universo</li>
           <li>Indicador I.CN.4.12.1</li>
@@ -678,25 +934,51 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
         </ul>
       </div>
     </div>
-    <p class="sec-title">Elige tu ruta de aprendizaje</p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap" role="group" aria-label="Selecciona una ruta de aprendizaje">
-      <button class="route-btn" id="ruta-basica" onclick="setRuta('basica')"
-              aria-label="Ruta Básica: fichas de planetas y evaluación directa">
-        🔵 RUTA BÁSICA
-        <small>Fichas de los 4 planetas → Evaluación directa</small>
+    <button onclick="document.getElementById('s2-modal-prereqs').style.display='none'" style="margin-top:18px;background:var(--gold);color:var(--bg);font-family:var(--fhead);font-size:.7rem;letter-spacing:1.5px;border:none;padding:9px 22px;border-radius:var(--r2);cursor:pointer">CERRAR</button>
+  </div>
+</div>
+
+<!-- MODAL: VINCULACIÓN CURRICULAR -->
+<div id="s2-modal-curricular" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9999;align-items:center;justify-content:center;" onclick="if(event.target===this)this.style.display='none'" role="dialog" aria-modal="true">
+  <div style="background:#0d1530;border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;max-width:520px;width:92%">
+    <h3 style="font-family:var(--fhead);color:var(--gold);font-size:.85rem;letter-spacing:2px;margin-bottom:18px">🔗 VINCULACIÓN CURRICULAR</h3>
+    <ul class="sp" style="font-size:.88rem;margin-bottom:14px">
+      <li><strong class="text-blue">Área:</strong> Ciencias Naturales</li>
+      <li><strong class="text-blue">Subnivel:</strong> EGB Superior — 8vo, 9no y 10mo grado</li>
+      <li><strong class="text-blue">Bloque:</strong> 4 «La Tierra y el Universo»</li>
+      <li><strong class="text-blue">DCD:</strong> CN.4.4.3 · Currículo Priorizado MinEduc 2016</li>
+      <li><strong class="text-blue">Indicador:</strong> I.CN.4.12.1 — Diferencia componentes del Universo según estructura y origen</li>
+      <li><strong class="text-blue">OG:</strong> OG.CN.5 — Uso de TIC como instrumento del aprendizaje científico</li>
+      <li><strong class="text-blue">ODS 4:</strong> Meta 4.4 — Competencias digitales y científicas</li>
+    </ul>
+    <button onclick="document.getElementById('s2-modal-curricular').style.display='none'" style="background:var(--gold);color:var(--bg);font-family:var(--fhead);font-size:.7rem;letter-spacing:1.5px;border:none;padding:9px 22px;border-radius:var(--r2);cursor:pointer">CERRAR</button>
+  </div>
+</div>
+
+<!-- MODAL: RUTAS DE APRENDIZAJE -->
+<div id="s2-modal-ruta" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9999;align-items:center;justify-content:center;" onclick="if(event.target===this)this.style.display='none'" role="dialog" aria-modal="true">
+  <div style="background:#0d1530;border:1px solid var(--border);border-radius:var(--r);padding:28px 32px;max-width:580px;width:92%">
+    <h3 style="font-family:var(--fhead);color:var(--gold);font-size:.85rem;letter-spacing:2px;margin-bottom:8px">🗺️ ELIGE TU RUTA DE APRENDIZAJE</h3>
+    <p style="font-size:.82rem;color:var(--muted);margin-bottom:18px">Selecciona según tu nivel de conocimiento previo. Puedes cambiarla en cualquier momento.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <button class="route-btn" id="ruta-basica" onclick="setRuta('basica');document.getElementById('s2-modal-ruta').style.display='none'" style="flex:1;min-width:200px;padding:18px 16px;text-align:center">
+        <span style="font-size:1.4rem;display:block;margin-bottom:8px">🔵</span>
+        <span style="font-family:var(--fhead);font-size:.78rem;color:var(--blue);display:block;margin-bottom:6px">RUTA BÁSICA</span>
+        <span style="font-size:.76rem;color:var(--muted);line-height:1.5">Fichas de los 4 planetas + Evaluación directa.</span>
       </button>
-      <button class="route-btn active-route" id="ruta-avanzada" onclick="setRuta('avanzada')"
-              aria-label="Ruta Avanzada: módulo completo con síntesis y reflexión">
-        🟢 RUTA AVANZADA
-        <small>Módulo completo: síntesis, reflexión y debate</small>
+      <button class="route-btn active-route" id="ruta-avanzada" onclick="setRuta('avanzada');document.getElementById('s2-modal-ruta').style.display='none'" style="flex:1;min-width:200px;padding:18px 16px;text-align:center">
+        <span style="font-size:1.4rem;display:block;margin-bottom:8px">🟢</span>
+        <span style="font-family:var(--fhead);font-size:.78rem;color:var(--teal);display:block;margin-bottom:6px">RUTA AVANZADA</span>
+        <span style="font-size:.76rem;color:var(--muted);line-height:1.5">Módulo completo: síntesis, reflexión y debate.</span>
       </button>
     </div>
-    <p style="font-size:.72rem;color:var(--muted);margin-top:8px">Por defecto se sigue la Ruta Avanzada. Puedes cambiar tu elección en cualquier momento.</p>
+    <p style="font-size:.72rem;color:var(--dim);margin-top:12px">Ruta Avanzada seleccionada por defecto.</p>
   </div>
 </div>
 
 <!-- SLIDE 3: CONTEXTO PLANETAS EXTERIORES -->
 <div class="slide" id="s3c" aria-label="Diapositiva 3: Los planetas exteriores, contexto general">
+  <div class="orbit-deco" aria-hidden="true"><div class="orbit-ring or1"></div><div class="orbit-ring or2"></div><div class="orbit-ring or3"></div></div>
   <div class="ctx-bg" role="img" aria-label="Imagen comparativa de los planetas del Sistema Solar ordenados por tamaño. Fuente: NASA"></div>
   <div class="ctx-over" aria-hidden="true"></div>
   <div class="slide-strip" style="position:relative;z-index:2">
@@ -744,7 +1026,7 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
     <p class="sec-title">Dos tipos de gigantes planetarios</p>
     <div class="cmp-grid" role="region" aria-label="Comparación entre gigantes gaseosos y helados">
       <div class="cmp-col cmp-gas">
-        <div class="cmp-head"><h2>🔵 GIGANTES GASEOSOS</h2><p style="font-size:.82rem;color:var(--muted)">Júpiter · Saturno</p></div>
+        <div class="cmp-head"><span class="cmp-planet-mini" aria-hidden="true">🟠🟡</span><h2>🔵 GIGANTES GASEOSOS</h2><p style="font-size:.82rem;color:var(--muted)">Júpiter · Saturno</p></div>
         <div class="cmp-body">
           <ul class="sp">
             <li><span class="highlight">Composición:</span> H₂ y He (&gt; 90 %)</li>
@@ -762,7 +1044,7 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
         <div class="vs-line"></div>
       </div>
       <div class="cmp-col cmp-ice">
-        <div class="cmp-head"><h2>🟢 GIGANTES HELADOS</h2><p style="font-size:.82rem;color:var(--muted)">Urano · Neptuno</p></div>
+        <div class="cmp-head"><span class="cmp-planet-mini" aria-hidden="true">🔵💙</span><h2>🟢 GIGANTES HELADOS</h2><p style="font-size:.82rem;color:var(--muted)">Urano · Neptuno</p></div>
         <div class="cmp-body">
           <ul class="sp">
             <li><span class="highlight">Composición:</span> H₂O, CH₄ y NH₃ supercomprimidos</li>
@@ -816,7 +1098,8 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
     <div class="fact-box" role="note" aria-label="Dato destacado sobre Júpiter">
       ⭐ La <strong>Gran Mancha Roja (GMR)</strong> es una tormenta anticiclónica de alta presión, mayor que la Tierra, observable desde el siglo XVII. Su masa equivale a <strong>2× la masa combinada</strong> de todos los demás planetas.
     </div>
-    <p class="source-credit">Imagen: NASA/ESA, Telescopio Espacial Hubble (2014). Dominio público.<br>
+    <button class="video-btn" onclick="openVideo('https://www.youtube.com/embed/uj3Lq7Gu94Y?autoplay=1','Júpiter — Sobrevuelo Misión Juno · NASA')" aria-label="Ver video de Júpiter — Misión Juno NASA">VER VIDEO JUNO · NASA</button>
+    <p class="source-credit" style="margin-top:10px">Imagen: NASA/ESA, Telescopio Espacial Hubble (2014). Dominio público.<br>
     Fuente: <a href="https://science.nasa.gov/jupiter/" target="_blank" rel="noopener">science.nasa.gov/jupiter</a></p>
   </div>
 </div>
@@ -847,7 +1130,8 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
     <div class="fact-box" role="note" aria-label="Dato destacado sobre Saturno">
       ⭐ Sus <strong>anillos se extienden 282 000 km</strong> pero tienen apenas ~10 m de grosor. Son relativamente jóvenes (100–400 Ma), posiblemente formados por la destrucción de un satélite o cometa. La misión <strong>Cassini-Huygens</strong> (NASA/ESA) los estudió entre 1997 y 2017.
     </div>
-    <p class="source-credit">Imagen: NASA/JPL/Space Science Institute – Cassini (2009). Dominio público.<br>
+    <button class="video-btn" onclick="openVideo('https://www.youtube.com/embed/xrGAQCq9BMU?autoplay=1','Saturno — Cassini Grand Finale · NASA/JPL')" aria-label="Ver video de Saturno — Misión Cassini NASA">VER VIDEO CASSINI · NASA/ESA</button>
+    <p class="source-credit" style="margin-top:10px">Imagen: NASA/JPL/Space Science Institute – Cassini (2009). Dominio público.<br>
     Fuente: <a href="https://science.nasa.gov/saturn/" target="_blank" rel="noopener">science.nasa.gov/saturn</a></p>
   </div>
 </div>
@@ -878,7 +1162,8 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
     <div class="fact-box" role="note" aria-label="Dato destacado sobre Urano">
       ⭐ Urano orbita el Sol prácticamente <strong>acostado de lado</strong>. Sus polos reciben luz solar directa durante <strong>42 años continuos</strong>, seguidos de 42 años de oscuridad — las estaciones más extremas del Sistema Solar. NASA planifica la misión <em>Uranus Orbiter Probe</em> para la década de 2030.
     </div>
-    <p class="source-credit">Imagen: NASA/JPL-Caltech – Voyager 2 (1986). Dominio público.<br>
+    <button class="video-btn" onclick="openVideo('https://www.youtube.com/embed/vkV_gvqeFQ0?autoplay=1','Urano — Tour del gigante helado · NASA Chandra')" aria-label="Ver video de Urano NASA">VER VIDEO URANO · NASA</button>
+    <p class="source-credit" style="margin-top:10px">Imagen: NASA/JPL-Caltech – Voyager 2 (1986). Dominio público.<br>
     Fuente: <a href="https://science.nasa.gov/uranus/" target="_blank" rel="noopener">science.nasa.gov/uranus</a></p>
   </div>
 </div>
@@ -909,28 +1194,30 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
     <div class="fact-box" role="note" aria-label="Dato destacado sobre Neptuno">
       ⭐ Neptuno recibe <strong>≈ 900× menos energía solar que la Tierra</strong>, pero genera los <strong>vientos más veloces del Sistema Solar</strong> (hasta 2 100 km/h) gracias a su calor interno residual. Para comparar: un huracán categoría 5 en la Tierra apenas alcanza ~280 km/h. ¡Los vientos de Neptuno son 7× más veloces! Voyager 2 es la única nave que lo ha visitado (sobrevuelo: agosto 1989).
     </div>
-    <p class="source-credit">Imagen: NASA/JPL-Caltech – Voyager 2 (1989). Dominio público.<br>
+    <button class="video-btn" onclick="openVideo('https://www.youtube.com/embed/1HBumk5Vm78?autoplay=1','Neptuno — Voyager 2: Primera nave en Neptuno · NASA/JPL')" aria-label="Ver video de Neptuno NASA">VER VIDEO VOYAGER 2 · NASA</button>
+    <p class="source-credit" style="margin-top:10px">Imagen: NASA/JPL-Caltech – Voyager 2 (1989). Dominio público.<br>
     Fuente: <a href="https://science.nasa.gov/neptune/" target="_blank" rel="noopener">science.nasa.gov/neptune</a></p>
   </div>
 </div>
 
 <!-- SLIDE 9: SÍNTESIS COMPARATIVA -->
 <div class="slide" id="s9c" aria-label="Diapositiva 9: Tabla síntesis de los cuatro gigantes planetarios">
+  <div class="synth-bg" aria-hidden="true"></div>
   <div class="slide-strip">
     <span class="strip-label">📊 Síntesis</span>
     <span class="strip-dcd">Los 4 gigantes del Sistema Solar</span>
   </div>
-  <div class="slide-body">
+  <div class="slide-body" style="padding:16px 28px">
     <p class="sec-title">Comparación de los 4 planetas exteriores</p>
     <div style="overflow-x:auto">
       <table class="synth-table" aria-label="Tabla síntesis comparativa de los cuatro planetas exteriores">
         <thead>
           <tr>
             <th style="text-align:left;color:var(--muted)">Criterio</th>
-            <th class="th-jup">🟠 JÚPITER</th>
-            <th class="th-sat">🟡 SATURNO</th>
-            <th class="th-ura">🔵 URANO</th>
-            <th class="th-nep">💙 NEPTUNO</th>
+            <th class="th-jup"><span class="synth-planet-icon" aria-hidden="true">🟠</span>JÚPITER</th>
+            <th class="th-sat"><span class="synth-planet-icon" aria-hidden="true">🟡</span>SATURNO</th>
+            <th class="th-ura"><span class="synth-planet-icon" aria-hidden="true">🔵</span>URANO</th>
+            <th class="th-nep"><span class="synth-planet-icon" aria-hidden="true">💙</span>NEPTUNO</th>
           </tr>
         </thead>
         <tbody>
@@ -960,27 +1247,35 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
 </div>
 
 
-<!-- SLIDE REFLEXIÓN -->
+<!-- SLIDE REFLEXIÓN — layout split -->
 <div class="slide" id="s9bc" aria-label="Diapositiva de reflexión: construye tu propio criterio">
   <div class="slide-strip">
     <span class="strip-label">💭 Reflexión</span>
     <span class="strip-dcd">Construye tu propio criterio</span>
   </div>
-  <div class="slide-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;max-width:700px;margin:0 auto;text-align:center">
-    <div style="font-size:2.5rem;margin-bottom:16px">🤔</div>
-    <h2 style="font-family:var(--fhead);font-size:1.1rem;color:var(--gold);margin-bottom:20px;letter-spacing:2px">PIENSA Y RESPONDE</h2>
-    <div style="background:rgba(245,200,66,.07);border:1px solid rgba(245,200,66,.2);border-radius:var(--r);padding:20px 24px;width:100%;margin-bottom:20px;text-align:left">
-      <p style="font-size:1rem;font-weight:600;color:var(--white);margin-bottom:8px">Si pudieras enviar una sonda espacial a uno de los 4 gigantes, ¿a cuál elegirías y por qué?</p>
-      <p style="font-size:.82rem;color:var(--muted)">Apoya tu respuesta en al menos <strong>2 características físicas</strong> aprendidas en este módulo. Ejemplo: composición, temperatura, rasgos visuales o misiones activas.</p>
+  <div class="reflex-layout">
+    <div class="reflex-img" aria-hidden="true">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Jupiter_and_its_shrunken_Great_Red_Spot.jpg/800px-Jupiter_and_its_shrunken_Great_Red_Spot.jpg"
+           alt="" role="presentation" loading="lazy">
+      <p class="reflex-caption">NASA/ESA Hubble · Dominio público</p>
     </div>
-    <textarea id="reflexion-text" aria-label="Escribe aquí tu respuesta de reflexión" placeholder="Escribe aquí tu respuesta... (mínimo 30 palabras)" style="width:100%;min-height:110px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--white);font-family:var(--fbody);font-size:.9rem;padding:14px 16px;resize:vertical;line-height:1.6" oninput="checkReflexion()"></textarea>
-    <div id="ref-feedback" style="margin-top:12px;font-size:.84rem;color:var(--muted);min-height:24px" aria-live="polite"></div>
-    <button id="ref-continue" onclick="goSlide(10)" disabled style="margin-top:20px;background:var(--gold);color:var(--bg);font-family:var(--fhead);font-size:.75rem;letter-spacing:2px;border:none;padding:13px 32px;border-radius:var(--r2);cursor:not-allowed;opacity:.4" aria-label="Continuar al debate en clase">💬 CONTINUAR AL DEBATE</button>
+    <div class="reflex-content">
+      <div style="font-size:2.2rem;margin-bottom:12px">🤔</div>
+      <h2 style="font-family:var(--fhead);font-size:1rem;color:var(--gold);margin-bottom:16px;letter-spacing:2px">PIENSA Y RESPONDE</h2>
+      <div style="background:rgba(245,200,66,.07);border:1px solid rgba(245,200,66,.2);border-radius:var(--r);padding:16px 20px;width:100%;margin-bottom:16px;text-align:left">
+        <p style="font-size:.95rem;font-weight:600;color:var(--white);margin-bottom:8px">Si pudieras enviar una sonda espacial a uno de los 4 gigantes, ¿a cuál elegirías y por qué?</p>
+        <p style="font-size:.8rem;color:var(--muted)">Apoya tu respuesta en al menos <strong>2 características físicas</strong> aprendidas en este módulo — composición, temperatura, rasgo visual o misiones activas.</p>
+      </div>
+      <textarea id="reflexion-text" aria-label="Escribe aquí tu respuesta de reflexión" placeholder="Escribe aquí tu respuesta... (mínimo 30 palabras)" style="width:100%;min-height:100px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--white);font-family:var(--fbody);font-size:.88rem;padding:12px 14px;resize:vertical;line-height:1.6" oninput="checkReflexion()"></textarea>
+      <div id="ref-feedback" style="margin-top:10px;font-size:.83rem;color:var(--muted);min-height:22px" aria-live="polite"></div>
+      <button id="ref-continue" onclick="goSlide(10)" disabled style="margin-top:16px;background:var(--gold);color:var(--bg);font-family:var(--fhead);font-size:.72rem;letter-spacing:2px;border:none;padding:11px 28px;border-radius:var(--r2);cursor:not-allowed;opacity:.4" aria-label="Continuar al debate en clase">💬 CONTINUAR AL DEBATE</button>
+    </div>
   </div>
 </div>
 
 <!-- SLIDE DEBATE EN CLASE -->
 <div class="slide" id="s10bc" aria-label="Diapositiva debate en clase sobre vida en lunas de gigantes planetarios">
+  <div class="debate-bg" aria-hidden="true"></div>
   <div class="slide-strip">
     <span class="strip-label">🗣️ Debate en Clase</span>
     <span class="strip-dcd">Pensamiento crítico · Trabajo colaborativo</span>
@@ -1026,8 +1321,9 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
     <span class="strip-dcd">2 Fases interactivas</span>
   </div>
   <div class="slide-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+    <div class="act-orbit-deco" aria-hidden="true"><div class="act-ring ar1"></div><div class="act-ring ar2"></div></div>
     <div style="font-size:3rem;margin-bottom:20px">🪐</div>
-    <h2 style="font-family:var(--fhead);font-size:1.3rem;color:var(--gold);margin-bottom:16px;letter-spacing:2px">PONE A PRUEBA LO APRENDIDO</h2>
+    <h2 style="font-family:var(--fhead);font-size:1.3rem;color:var(--gold);margin-bottom:16px;letter-spacing:2px">PON A PRUEBA LO APRENDIDO</h2>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:680px;width:100%;margin-bottom:24px">
       <div class="info-card" style="text-align:left">
         <h3>Fase 1 · Clasificación</h3>
@@ -1165,7 +1461,7 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
       <div class="q-opt" onclick="qSelect('q1','d',this)" tabindex="0" onkeydown="if(event.key==='Enter')qSelect('q1','d',this)" role="radio" aria-checked="false"><span class="opt-l">D</span>Su superficie rojiza cubierta de óxido de hierro.</div>
       </div>
       <div class="q-fb" id="fb-q1" aria-live="polite"><strong>Júpiter:</strong> sus bandas paralelas al ecuador son corrientes de chorro (jet streams) de nubes de NH₃ cristalizado. La GMR es una tormenta de alta presión mayor que la Tierra, observable desde el siglo XVII. <em>Fuente: NASA/JPL – Juno Mission (2024).</em></div>
-      <button class="q-next" id="nx-q1" onclick="goSlide(17)" aria-label="Siguiente pregunta →">Siguiente pregunta →</button>
+      <button class="q-next" id="nx-q1" onclick="goSlide(15)" aria-label="Siguiente pregunta →">Siguiente pregunta →</button>
     </div></div>
   </div>
 </div>
@@ -1426,6 +1722,18 @@ body.reading-mode .planet-img-panel img{filter:invert(1) hue-rotate(180deg)}
 </div>
 
 
+<!-- ═══ MODAL VIDEO NASA ═══ -->
+<div id="video-modal" role="dialog" aria-modal="true" aria-label="Video NASA"
+     onclick="if(event.target===this)closeVideo()">
+  <p class="vm-title" id="vm-title">VIDEO NASA</p>
+  <div class="vm-inner">
+    <iframe id="vm-frame" src="" allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            aria-label="Video NASA del planeta"></iframe>
+  </div>
+  <button class="vm-close" onclick="closeVideo()" aria-label="Cerrar video">✕ CERRAR VIDEO</button>
+</div>
+
 <!-- ── NAVIGATION BAR ── -->
 <nav id="nav" role="navigation" aria-label="Navegación entre diapositivas">
   <button class="nav-btn" id="nav-prev" onclick="prevSlide()" disabled aria-label="Diapositiva anterior">&#8592; ANTERIOR</button>
@@ -1619,7 +1927,7 @@ function qSelect(qid, opt, el) {
 }
 
 function slideNumForQ(qid) {
-  return {q1:15, q2:16, q3:17, q4:18}[qid];
+  return {q1:13, q2:14, q3:15, q4:16}[qid];
 }
 
 function showScore() {
@@ -1643,7 +1951,7 @@ function showScore() {
 
 function retryQuiz() {
   qScore = 0; qDone = 0;
-  [15,16,17,18].forEach(sn => {
+  [13,14,15,16].forEach(sn => {
     const el = document.querySelector('#s' + sn + 'c');
     if (!el) return;
     delete el.dataset.done;
@@ -1781,6 +2089,40 @@ function playSound(type) {
     }
   } catch(e) {}
 }
+
+
+/* ════════════════════ VIDEO MODAL ════════════════════ */
+function openVideo(src, title) {
+  document.getElementById('vm-frame').src = src;
+  document.getElementById('vm-title').textContent = title;
+  document.getElementById('video-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeVideo() {
+  document.getElementById('vm-frame').src = '';
+  document.getElementById('video-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') closeVideo();
+});
+
+/* ════════════════════ 3D HOVER EN FICHAS DE PLANETA ════════════════════ */
+document.querySelectorAll('.planet-slide').forEach(slide => {
+  const panel = slide.querySelector('.planet-data-panel');
+  if (!panel) return;
+  slide.addEventListener('mousemove', function(e) {
+    const rect = panel.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width  - 0.5;
+    const y = (e.clientY - rect.top)  / rect.height - 0.5;
+    panel.style.transform = `perspective(900px) rotateY(${x * 7}deg) rotateX(${-y * 4}deg) translateZ(4px)`;
+    panel.style.transition = 'transform .08s ease-out';
+  });
+  slide.addEventListener('mouseleave', function() {
+    panel.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) translateZ(0)';
+    panel.style.transition = 'transform .4s ease';
+  });
+});
 
 /* init */
 updateNav();
